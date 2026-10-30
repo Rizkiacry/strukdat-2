@@ -101,16 +101,17 @@ void hapus_awal()
    {
         cout<<"Maaf....List Kosong!!!\n";
    }
-   else if (awal==akhir)
-   {
-    hapus=awal;
-    awal=NULL;
-    akhir=NULL;
-   }
    else
    {
       hapus=awal;
       awal=awal->next;
+      if(awal==NULL)
+      {
+        akhir=NULL;
+      }
+      delete hapus;
+      hapus=NULL;
+      cout<<"Hapus Awal Berhasil\n";
    }
 }
 
@@ -125,6 +126,9 @@ void hapus_akhir()
     hapus=awal;
     awal=NULL;
     akhir=NULL;
+    delete hapus;
+    hapus=NULL;
+    cout<<"Hapus Akhir Berhasil\n";
    }
    else
    {
@@ -136,43 +140,39 @@ void hapus_akhir()
       hapus=akhir;
       b1->next=NULL;
       akhir=b1;
+      delete hapus;
+      hapus=NULL;
+      cout<<"Hapus Akhir Berhasil\n";
    }
 }
 
 void hapus_tengah(int x)
 {
     tsimpul *b;
-   int ada=0;
-   b=awal;
    if(awal==NULL)
         cout<<"Maaf....List Kosong!!!\n";
-   else if(b->info==x)
+   else if(awal->info==x)
         hapus_awal();
-   else if(akhir->info==x)
-    hapus_akhir();
    else
    {
-    while(b!=NULL)
-    {
-        if(b->info==x)
-         {
-            ada++;
-         }
-            b=b->next;
-    }
-      if(ada==0)
-            cout<<"\n-->Data Yang Di Masukkan Tidak Valid<--\n\n";
-      else
-      {
       b=awal;
-      while(b->next->info!=x)
+      while(b->next!=NULL && b->next->info!=x)
       {
         b=b->next;
       }
-    b1=b->next;
-      b2=b1->next;
-      hapus=b1;
-      b->next=b2;
+      if(b->next==NULL)
+            cout<<"\n-->Data Yang Di Masukkan Tidak Valid<--\n\n";
+      else
+      {
+        hapus=b->next;
+        b->next=hapus->next;
+        if(hapus==akhir)
+        {
+            akhir=b;
+        }
+        delete hapus;
+        hapus=NULL;
+        cout<<"Hapus Tengah Berhasil\n";
       }
    }
 }

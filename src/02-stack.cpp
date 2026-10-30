@@ -62,7 +62,9 @@ void hapus_stack()
       hapus=atas;
       atas=atas->next;
       jumlah--;
-      cout<<"Penghapusan Berhasil\n";
+      cout<<"Data "<<hapus->info<<" Berhasil Dihapus\n";
+      delete hapus;
+      hapus=NULL;
    }
 }
 
@@ -78,7 +80,9 @@ void hapus_semua()
       {
         hapus=atas;
         atas=atas->next;
+        delete hapus;
       }
+      hapus=NULL;
       jumlah=0;
       cout<<"Semua Data Terhapus\n";
    }

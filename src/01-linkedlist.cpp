@@ -1,6 +1,13 @@
-#include <conio.h>
-#include <iostream.h>
-#include <stdio.h>
+#include <iostream>
+#include <cstdlib>
+using std::cout;
+using std::cin;
+
+#ifdef _WIN32
+#define CLS "cls"
+#else
+#define CLS "clear"
+#endif
 
 typedef struct simpul tsimpul;
 struct simpul
@@ -170,13 +177,13 @@ void hapus_tengah(int x)
    }
 }
 
-void main()
+int main()
 {
    int pilih,n,nn;
    char lagi;
    do
    {
-      clrscr();
+      system(CLS);
       cout<<"================================================\n";
       cout<<"||         PROGRAM SINGLE LINKED LIST         ||\n";
       cout<<"================================================\n";
@@ -218,4 +225,5 @@ void main()
     cout<<"Lagi (y/t)? ";cin>>lagi;
    }
    while(lagi=='y'||lagi=='Y');
+   return 0;
 }
